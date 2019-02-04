@@ -1,0 +1,25 @@
+{% extends 'blog/base.html' %}
+<html>
+<head>
+</head>
+<body>
+{% block content %}
+    {% for post in posts %}
+        <div class="post">
+            <div class="date">
+                {{ post.published_date }}
+            </div>
+            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+            <p>{{ post.text|linebreaksbr }}</p>
+        </div>
+    {% endfor %}
+<div class="pagination" style="font-size: 150%">
+  <a href="?page={{ prev }}">&laquo;</a>
+    {% for page_no in pages %}
+    <a href="?page={{ page_no }}">{{ page_no }}</a>
+    {% endfor %}
+  <a href="?page={{ next }}">&raquo;</a>
+{% endblock %}
+</div>
+</body>
+</html>
